@@ -1,0 +1,22 @@
+/* src/components/ThreeDModel.css */
+.threeDContainer {
+    background-color: #ffff;
+
+  }
+  
+  .threeDHeader {
+    background-color: #ffff;
+    
+  }
+  
+  .threeDScene {
+    background-color: #ffff;
+}
+
+.customCanvas {
+  background-color: #ffff;
+}
+
+h1{
+  text-align: center;
+}
