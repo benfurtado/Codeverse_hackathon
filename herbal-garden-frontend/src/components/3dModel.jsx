@@ -7,50 +7,43 @@ import './3dModel.css';
 
 const ThreeDModel = () => {
   const mountRef = useRef(null);
+  let renderer, scene, camera, controls; // Declare these outside of useEffect for cleanup
 
   useEffect(() => {
     // Scene setup
-    const scene = new THREE.Scene();
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color('#343434');
 
-    // Set the background color of the scene
-    scene.background = new THREE.Color('#343434'); // Set the scene background to white
-
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 5;
 
-    const renderer = new THREE.WebGLRenderer();
-    
-    // Directly set CSS styles on the canvas
-    renderer.domElement.style.width = '800px'; // Set the desired width
-    renderer.domElement.style.height = '600px'; // Set the desired height
-    renderer.domElement.style.border = '2px solid #000'; // Optional: Add a border
+    renderer = new THREE.WebGLRenderer();
+    renderer.domElement.style.width = '800px';
+    renderer.domElement.style.height = '600px';
+    renderer.domElement.style.border = '2px solid #000';
     renderer.domElement.style.display = 'block';
-    renderer.domElement.style.margin = 'auto'; // Center the canvas
-    renderer.domElement.style.borderRadius = '50px'; // Add some padding
+    renderer.domElement.style.margin = 'auto';
+    renderer.domElement.style.borderRadius = '50px';
 
     mountRef.current.appendChild(renderer.domElement);
+    renderer.setSize(800, 600);
 
-    renderer.setSize(800, 600); // Adjust renderer size to match the CSS
-
-    // Add more balanced lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.5); // Soft white light, half intensity
+    // Lighting setup
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(-1, -1, -1).normalize(); // Position behind the model
+    directionalLight.position.set(-1, -1, -1).normalize();
     scene.add(directionalLight);
 
-    // Add Hemisphere light for soft sky-like illumination
-    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6); // Sky color, ground color, intensity
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
     hemisphereLight.position.set(0, 200, 0);
     scene.add(hemisphereLight);
 
-    // Add a key directional light for sharp shadows
     const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
     directionalLight1.position.set(5, 5, 5);
     scene.add(directionalLight1);
 
-    // Add a secondary directional light to fill shadows
     const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.3);
     directionalLight2.position.set(-5, -5, 5);
     scene.add(directionalLight2);
@@ -70,11 +63,12 @@ const ThreeDModel = () => {
     );
 
     // Set up controls
-    const controls = new OrbitControls(camera, renderer.domElement);
+    controls = new OrbitControls(camera, renderer.domElement);
 
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
+      controls.update();
       renderer.render(scene, camera);
     };
 
@@ -82,7 +76,12 @@ const ThreeDModel = () => {
 
     // Cleanup on component unmount
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+      controls.dispose();
+      renderer.dispose();
+      scene.clear();
     };
   }, []);
 

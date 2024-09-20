@@ -1,26 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
 const VariablePage = () => {
   const [variable, setVariable] = useState('');
+  const [error, setError] = useState(null);
+  const mountRef = useRef(null); // Ref to track mounted component
 
   useEffect(() => {
-    // Make a request to the Django API endpoint
-    axios.get('http://localhost:8000/api/send_variable/')
-      .then(response => {
+    const fetchVariable = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/send_variable/');
         setVariable(response.data.variable); // Store the variable in state
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('There was an error fetching the variable:', error);
-      });
+        setError('Failed to load variable. Please try again later.');
+      }
+    };
+
+    fetchVariable();
+
+    return () => {
+      // Cleanup logic (if needed)
+      console.log('Cleaning up, mountRef:', mountRef.current);
+    };
   }, []);
 
   return (
-    <div>
+    <div ref={mountRef}>
       <h1>Welcome to the home Page</h1>
-      <p>{variable}</p>
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        <p>{variable}</p>
+      )}
 
       <Link to="/3dmodel">
         <button>See Model</button>
