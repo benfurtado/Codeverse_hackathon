@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 ROOT_URLCONF = 'virtual_herbal_garden.urls'
@@ -88,6 +88,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+import os
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, './frontend/ayurastra/dist'),
+]
 
 
 # Password validation

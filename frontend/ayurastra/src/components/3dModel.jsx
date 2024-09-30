@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import './3dModel.css';
+import '../styles/3dModel.css';
 
 const ThreeDModel = () => {
   const mountRef = useRef(null);
@@ -51,7 +51,7 @@ const ThreeDModel = () => {
     // Load the GLB model
     const loader = new GLTFLoader();
     loader.load(
-      '/neem_leaf_hyperrealistic.glb',
+      '/images/neem_leaf_hyperrealistic.glb',
       (gltf) => {
         console.log('GLB file loaded successfully:', gltf);
         scene.add(gltf.scene);

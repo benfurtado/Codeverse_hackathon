@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const VariablePage = () => {
+const Home = () => {
   const [variable, setVariable] = useState('');
   const [error, setError] = useState(null);
   const mountRef = useRef(null); // Ref to track mounted component
@@ -39,9 +39,9 @@ const VariablePage = () => {
         <button>See Model</button>
       </Link>
 
-      <img src="/logo192.png" alt="Logo" />
+      <img src="/images/logo192.png" alt="Logo" />
     </div>
   );
 };
 
-export default VariablePage;
+export default Home;
