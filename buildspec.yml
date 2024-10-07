@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Installing Python dependencies for Django (Backend)
+      - echo "Installing Django backend dependencies..."
+      - cd backend  # Change directory to backend
+      - pip install -r requirements.txt  # Install Django dependencies
+
+      # Installing Node.js dependencies for React (Frontend)
+      - echo "Installing React frontend dependencies..."
+      - cd ../frontend  # Go to frontend directory
+      - npm install  # Install React dependencies
+
+  build:
+    commands:
+      # Building the React app
+      - echo "Building React app..."
+      - npm run build  # Build the React app
+
+      # Collecting Django static files
+      - echo "Collecting static files for Django..."
+      - cd ../backend  # Go back to backend
+      - python manage.py collectstatic --noinput  # Collect static files for Django
+
+artifacts:
+  files:
+    - '**/*'  # Capture all files
+  base-directory: frontend/build  # Set frontend build folder as the base for artifacts
+  discard-paths: yes
