@@ -29,8 +29,3 @@ phases:
     files:
       - backend.zip  # Package your backend application for deployment
     base-directory: backend  # Specify where the artifacts are located
-
-
-  cache:
-    paths:
-      - /root/.cache/pip
