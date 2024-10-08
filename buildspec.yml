@@ -3,6 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
+      - pip install awscli  # Optional, only if not installed
       - echo "Installing dependencies..."
       - pip install -r requirements.txt
       - cd frontend/ayurastra
@@ -26,4 +27,10 @@ phases:
 
 artifacts:
   files:
-    - '**/*'
+    - backend.zip  # Package your backend application for deployment
+  base-directory: backend  # Specify where the artifacts are located
+
+
+cache:
+  paths:
+    - /root/.cache/pip
