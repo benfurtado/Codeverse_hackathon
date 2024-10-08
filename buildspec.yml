@@ -25,7 +25,12 @@ phases:
     commands:
       - echo "Post-build actions..."
 
-  artifacts:
-    files:
-      - backend.zip  # Package your backend application for deployment
-    base-directory: backend  # Specify where the artifacts are located
+artifacts:
+  files:
+    - backend.zip  # Package your backend application for deployment
+  base-directory: backend  # Specify where the artifacts are located
+
+
+cache:
+  paths:
+    - /root/.cache/pip
