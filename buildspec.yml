@@ -3,30 +3,29 @@ version: 0.2
 phases:
   install:
     commands:
-      # Installing Python dependencies for Django (Backend)
-      - echo "Installing Django backend dependencies..."
-      - cd backend  # Change directory to backend
-      - pip install -r ../requirements.txt  # Install Django dependencies
-
-      # Installing Node.js dependencies for Vite React (Frontend)
-      - echo "Installing Vite React frontend dependencies..."
-      - cd ../frontend/ayurastra  # Go to frontend ayurastra directory
-      - npm install  # Install Vite React dependencies
+      - cd backend
+      - pip install -r requirements.txt
+      - cd ../frontend
+      - npm install
 
   build:
     commands:
-      # Building the Vite React app
-      - echo "Building Vite React app..."
-      - cd frontend/ayurastra  # Make sure we're in the frontend directory
-      - npm run build  # Build the Vite React app
+      - cd backend
+      - python manage.py migrate
+      - python manage.py collectstatic --noinput
+      - cd ../frontend
+      - npm run build
 
-      # Collecting Django static files
-      - echo "Collecting static files for Django..."
-      - cd ../../backend  # Go back to backend
-      - python manage.py collectstatic --noinput  # Collect static files for Django
+  post_build:
+    commands:
+      aws s3 cp frontend/ayurastra/dist https://us-east-1.console.aws.amazon.com/s3/buckets/mydevopstestbucket?region=us-east-1&bucketType=general --recursive --profile my-profile
 
 artifacts:
   files:
-    - '**/*'
-  base-directory: frontend/ayurastra/dist  # Vite's production build output is in 'dist' folder
-  discard-paths: yes
+    - backend.zip
+  base-directory: backend
+
+cache:
+  paths:
+    - /root/.cache/pip
+    - /root/.npm
