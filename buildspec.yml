@@ -26,13 +26,9 @@ phases:
   post_build:
     commands:
       - echo "Post-build actions..."
-
+      
 artifacts:
   files:
-    - backend.zip  # Package your backend application for deployment
-  base-directory: backend  # Specify where the artifacts are located
-
-
-cache:
-  paths:
-    - /root/.cache/pip
+    - '**/*'  # Include everything from the build output
+  base-directory: frontend/ayurastra/dist  # Specify where the files are generated after the build process
+  discard-paths: yes
