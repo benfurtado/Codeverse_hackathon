@@ -20,6 +20,8 @@ phases:
       - cd ..
       - cd frontend/ayurastra
       - npm run build
+      - cd ..
+      - cd ..
 
   post_build:
     commands:
