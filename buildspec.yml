@@ -3,22 +3,24 @@ version: 0.2
 phases:
   install:
     commands:
-      - cd backend
-      - pip install -r requirements.txt
-      - cd ../frontend
-      - npm install
+      - python -m venv venv                   # Set up virtual environment
+      - source venv/bin/activate              # Activate virtual environment
+      - pip install -r requirements.txt       # Install backend dependencies
+      - cd frontend/ayurastra
+      - npm install                           # Install frontend dependencies
 
   build:
     commands:
-      - cd backend
-      - python manage.py migrate
-      - python manage.py collectstatic --noinput
-      - cd ../frontend
-      - npm run build
+      - cd ../../backend
+      - python manage.py migrate              # Run Django migrations
+      - python manage.py collectstatic --noinput  # Collect static files
+      - zip -r ../backend.zip .               # Zip the backend for deployment
+      - cd ../frontend/ayurastra
+      - npm run build                         # Build frontend assets
 
   post_build:
     commands:
-      aws s3 cp frontend/ayurastra/dist https://us-east-1.console.aws.amazon.com/s3/buckets/mydevopstestbucket?region=us-east-1&bucketType=general --recursive --profile my-profile
+      - aws s3 cp dist s3://mydevopstestbucket/ayurastra/dist/ --recursive --profile my-profile
 
 artifacts:
   files:
