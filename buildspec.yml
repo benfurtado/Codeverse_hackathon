@@ -6,26 +6,27 @@ phases:
       # Installing Python dependencies for Django (Backend)
       - echo "Installing Django backend dependencies..."
       - cd backend  # Change directory to backend
-      - pip install -r requirements.txt  # Install Django dependencies
+      - pip install -r ../requirements.txt  # Install Django dependencies
 
       # Installing Node.js dependencies for Vite React (Frontend)
       - echo "Installing Vite React frontend dependencies..."
-      - cd ../frontend  # Go to frontend directory
+      - cd ../frontend/ayurastra  # Go to frontend ayurastra directory
       - npm install  # Install Vite React dependencies
 
   build:
     commands:
       # Building the Vite React app
       - echo "Building Vite React app..."
+      - cd frontend/ayurastra  # Make sure we're in the frontend directory
       - npm run build  # Build the Vite React app
 
       # Collecting Django static files
       - echo "Collecting static files for Django..."
-      - cd ../backend  # Go back to backend
+      - cd ../../backend  # Go back to backend
       - python manage.py collectstatic --noinput  # Collect static files for Django
 
 artifacts:
   files:
     - '**/*'
-  base-directory: frontend/dist  # Vite's production build output is in 'dist' folder
+  base-directory: frontend/ayurastra/dist  # Vite's production build output is in 'dist' folder
   discard-paths: yes
