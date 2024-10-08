@@ -20,11 +20,11 @@ phases:
 
   post_build:
     commands:
-      - aws s3 cp dist s3://mydevopstestbucket/ayurastra/dist/ --recursive --profile my-profile
+      - aws s3 cp dist s3://mydevopstestbucket/ayurastra/dist/ --recursive --profile my-profile  # Upload frontend build to S3
 
 artifacts:
   files:
-    - backend.zip
+    - backend.zip                            # Specify the backend artifact
   base-directory: backend
 
 cache:
