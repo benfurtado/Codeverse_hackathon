@@ -26,6 +26,7 @@ phases:
 
 artifacts:
   files:
-    - '**/*'  # Capture all files
-  base-directory: frontend/build  # Set frontend build folder as the base for artifacts
+    - '**/*'
+  base-directory: frontend/dist  # Use 'dist' folder for production files
   discard-paths: yes
+
