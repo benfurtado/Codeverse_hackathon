@@ -36,7 +36,7 @@
   color: var(--accent-color); /* Deep Green */
   text-decoration: none;
   font-size: 1rem;
-  transition: color 0.3s ease; /* Smooth hover effect */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .nav a:hover {
@@ -97,4 +97,27 @@
   .login-btn {
     display: none; /* Optionally hide login button on mobile */
   }
+
+  /* Hover Effect for Menu Items in Hamburger Menu */
+  .nav a {
+    padding: 0.5rem 1rem; /* Add padding for better touch targets */
+    border-radius: 0.25rem; /* Rounded corners for a polished look */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+  }
+
+  .nav a:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+    color: var(--hover-color); /* Change text color for contrast */
+  }
+}
+
+.nav a.active {
+  background-color: #d0d0d0; /* Slightly darker than hover */
+  color: var(--hover-color);
+}
+
+.nav a:hover {
+  background-color: #e0e0e0;
+  color: var(--hover-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

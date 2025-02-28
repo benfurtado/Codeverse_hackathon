@@ -5,7 +5,7 @@
   background-size: cover; /* Ensures the image covers the entire section */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   margin: 1rem 0;
   position: relative; /* Allows overlay positioning */
   overflow: hidden; /* Ensures rounded corners work properly */
