@@ -1,6 +1,6 @@
 /* Global Styles */
 .header {
-  background-color: var(--primary-bg); /* Soft Green (#D1EEC7) */
+  background-color: #FBF8F3; /* Beige/Whitish background */
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -72,7 +72,7 @@
   .nav {
     display: none; /* Hide nav by default on mobile */
     flex-direction: column;
-    background-color: var(--primary-bg);
+    background-color: #FBF8F3; /* Match the header background */
     position: absolute;
     top: 100%; /* Position below the header */
     left: 0;
