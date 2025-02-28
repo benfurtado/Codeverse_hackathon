@@ -1,81 +1,126 @@
 .newsletter-section {
-    padding: 2rem;
-    text-align: center;
-    background-color: var(--primary-bg);
-    border-radius: 0.5rem;
-    margin: 1rem 0;
+  padding: 2rem;
+  text-align: center;
+  background-image: url('/images/news.png'); /* Path to your background image */
+  background-size: cover; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  position: relative; /* Allows overlay positioning */
+  overflow: hidden; /* Ensures rounded corners work properly */
+}
+
+/* Overlay for better text visibility */
+.newsletter-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 1; /* Ensures the overlay sits behind the content */
+}
+
+.newsletter-section h2,
+.newsletter-section p,
+.newsletter-teasers,
+.newsletter-form {
+  position: relative; /* Ensures content appears above the overlay */
+  z-index: 2; /* Places content above the overlay */
+}
+
+.newsletter-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white; /* White text for better contrast */
+}
+
+.newsletter-section p {
+  font-size: 1rem;
+  color: white; /* White text for better contrast */
+  margin-bottom: 1.5rem;
+}
+
+/* Teaser Cards */
+.newsletter-teasers {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.teaser-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.teaser-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.teaser-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--deep-green);
+}
+
+.teaser-card p {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* Subscription Form */
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.newsletter-form input {
+  padding: 0.75rem;
+  border: 1px solid var(--text-muted);
+  border-radius: 0.5rem;
+  width: 250px;
+}
+
+.newsletter-form button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+
+.newsletter-section::before {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.3)
+  );
+}
+
+.newsletter-section {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .newsletter-section h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--accent-color);
+  to {
+    opacity: 1;
   }
-  
-  .newsletter-section p {
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Teaser Cards */
-  .newsletter-teasers {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .teaser-card {
-    background: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
-  }
-  
-  .teaser-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .teaser-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--deep-green);
-  }
-  
-  .teaser-card p {
-    font-size: 0.9rem;
-    color: var(--text-color);
-  }
-  
-  /* Subscription Form */
-  .newsletter-form {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .newsletter-form input {
-    padding: 0.75rem;
-    border: 1px solid var(--text-muted);
-    border-radius: 0.5rem;
-    width: 250px;
-  }
-  
-  .newsletter-form button {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .newsletter-form button:hover {
-    background-color: var(--hover-color);
-    transform: scale(1.05);
-  }
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaQuoteLeft, FaUser } from 'react-icons/fa'; // Import icons
+import { motion } from 'framer-motion'; // Import framer-motion
 import './Testimonials.css';
 
 const Testimonials = () => {
@@ -26,9 +28,32 @@ const Testimonials = () => {
       <div className="testimonials-grid">
         {testimonials.map((testimonial, index) => (
           <div className="testimonial-card" key={index}>
-            <p>"{testimonial.quote}"</p>
-            <h3>{testimonial.name}</h3>
-            <p className="role">{testimonial.role}</p>
+            {/* Animated Quote Icon */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
+              <FaQuoteLeft className="quote-icon" />
+            </motion.div>
+
+            <p>{testimonial.quote}</p>
+
+            {/* User Info */}
+            <div className="user-info">
+              {/* Animated User Icon */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 100 }}
+              >
+                <FaUser className="user-icon" />
+              </motion.div>
+              <div>
+                <h3>{testimonial.name}</h3>
+                <p className="role">{testimonial.role}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>

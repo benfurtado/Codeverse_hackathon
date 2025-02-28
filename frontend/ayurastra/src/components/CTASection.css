@@ -1,34 +1,78 @@
 .cta-section {
-    padding: 2rem;
-    text-align: center;
-    background-color: var(--primary-bg); /* Soft Green (#D1EEC7) */
-    border-radius: 0.5rem;
-    margin: 1rem 0;
+  padding: 2rem;
+  text-align: center;
+  background-image: url('/images/cta.jpg'); /* Path to your background image */
+  background-size: cover; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+ 
+  margin: 1rem 0;
+  position: relative; /* Allows overlay positioning */
+  overflow: hidden; /* Ensures rounded corners work properly */
+}
+
+/* Overlay for better text visibility */
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 1; /* Ensures the overlay sits behind the content */
+}
+
+.cta-section::before {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.3)
+  );
+}
+
+.cta-section h2,
+.cta-section p,
+.cta-btn {
+  position: relative; /* Ensures content appears above the overlay */
+  z-index: 2; /* Places content above the overlay */
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white; /* White text for better contrast */
+}
+
+.cta-section p {
+  font-size: 1rem;
+  color: white; /* White text for better contrast */
+  margin-bottom: 1.5rem;
+}
+
+.cta-btn {
+  background-color: var(--accent-color); /* Deep Green */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: var(--hover-color); /* Light Green (#9AE6B4) */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.cta-section {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .cta-section h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--accent-color); /* Deep Green (#38A169) */
+  to {
+    opacity: 1;
   }
-  
-  .cta-section p {
-    font-size: 1rem;
-    color: var(--text-color); /* Dark Gray (#1A202C) */
-    margin-bottom: 1.5rem;
-  }
-  
-  .cta-btn {
-    background-color: var(--accent-color); /* Deep Green */
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .cta-btn:hover {
-    background-color: var(--hover-color); /* Light Green (#9AE6B4) */
-    transform: scale(1.05); /* Slight zoom effect on hover */
-  }
+}
