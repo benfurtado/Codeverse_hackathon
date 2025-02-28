@@ -1,0 +1,155 @@
+/* General Page Styling */
+.guided-tours-page {
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--secondary-bg); /* Light purple background */
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  .guided-tours-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--accent-color); /* Deep green */
+  }
+  
+  /* Tour Grid Layout */
+  .tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  /* Individual Tour Card */
+  .tour-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .tour-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tour-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--deep-green); /* Deep green */
+  }
+  
+  .tour-card p {
+    font-size: 0.9rem;
+    color: var(--text-color); /* Dark gray */
+  }
+  
+  /* Recipe Details Section */
+  .recipe-details {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .recipe-details h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color); /* Deep green */
+  }
+  
+  .recipe-details p {
+    font-size: 1rem;
+    color: var(--text-color); /* Dark gray */
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Language Toggle Buttons */
+  .language-toggle {
+    margin-bottom: 1rem;
+  }
+  
+  .language-toggle button {
+    background-color: var(--primary-bg); /* Soft green */
+    color: var(--text-color); /* Dark gray */
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .language-toggle button:disabled {
+    background-color: var(--accent-color); /* Deep green */
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  /* Recipe Card */
+  .recipe-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .recipe-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--deep-green); /* Deep green */
+  }
+  
+  .recipe-card h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color); /* Dark gray */
+  }
+  
+  .recipe-card ul,
+  .recipe-card ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Action Buttons (Bookmark and Share) */
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .bookmark-btn,
+  .share-btn {
+    background-color: var(--accent-color); /* Deep green */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bookmark-btn:hover,
+  .share-btn:hover {
+    background-color: var(--hover-color); /* Light green */
+  }
+  
+  /* Back Button */
+  .back-btn {
+    background-color: var(--accent-color); /* Deep green */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: var(--hover-color); /* Light green */
+  }

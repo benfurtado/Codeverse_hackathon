@@ -1,0 +1,53 @@
+.hero {
+  position: relative;
+  color: var(--text-color); /* Dark Gray (#1A202C) */
+  text-align: center;
+  min-height: 400px; /* Set a minimum height */
+  overflow: hidden; /* Prevents video overflow */
+}
+
+/* Video Styling */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the container */
+  transform: translate(-50%, -50%); /* Centers the video */
+  z-index: -1; /* Places the video behind the content */
+}
+
+/* Content Overlay */
+.hero-content {
+  position: relative;
+  z-index: 1; /* Places the content above the video */
+  padding: 5rem 1rem;
+  animation: fadeIn 0.8s ease-out; /* Fade-in effect */
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adds contrast against the video */
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #ffffff; /* Deep Green (#2E7D32) */
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adds contrast against the video */
+}
+
+.cta-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05); /* Slight zoom on hover */
+}

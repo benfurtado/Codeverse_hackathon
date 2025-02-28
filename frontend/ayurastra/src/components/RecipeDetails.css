@@ -1,0 +1,29 @@
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.bookmark-btn,
+.share-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.bookmark-btn:hover,
+.share-btn:hover {
+  background-color: var(--hover-color);
+}
+
+.bookmark-btn svg,
+.share-btn svg {
+  font-size: 1rem;
+}

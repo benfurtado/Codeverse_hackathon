@@ -1,0 +1,145 @@
+/* src/styles/global.css */
+
+:root {
+  /* Colors */
+  --primary-bg: #D1EEC7; /* Soft green for nav/footer */
+  --secondary-bg: #EDE9FE; /* Light purple for body */
+  --accent-color: #38A169; /* Deep green for CTAs */
+  --text-color: #1A202C; /* Dark gray for text */
+  --hover-color: #9AE6B4; /* Light green for hover effects */
+  --deep-green: #2E7D32; /* For headings and emphasis */
+  --muted-blue: #4FC3F7; /* For accents and highlights */
+  --error-color: #EF5350; /* For errors or warnings */
+
+  /* Fonts */
+  --font-heading: 'Merriweather', serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  /* Transitions */
+  --transition-speed: 0.3s;
+  --transition-easing: ease;
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color var(--transition-speed) var(--transition-easing); /* Smooth theme transitions */
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--deep-green);
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--transition-easing);
+}
+
+a:hover {
+  color: var(--hover-color);
+}
+
+button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) var(--transition-easing),
+    transform var(--transition-speed) var(--transition-easing);
+}
+
+button:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #666;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-speed) var(--transition-easing);
+}
+
+.scale-up {
+  transition: transform var(--transition-speed) var(--transition-easing);
+}
+
+.scale-up:hover {
+  transform: scale(1.05);
+}
+
+/* Accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
