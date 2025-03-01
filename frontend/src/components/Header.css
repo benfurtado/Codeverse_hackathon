@@ -1,0 +1,243 @@
+/* Global Styles */
+.header {
+  background-color: var(--primary-bg); /* Soft Green (#D1EEC7) */
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky; /* Makes the header sticky */
+  top: 0; /* Fixes it at the top of the viewport */
+  z-index: 1000; /* Ensures it stays above other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent-color); /* Deep Green (#38A169) */
+}
+
+.logo-image {
+  width: 40px; /* Adjust size as needed */
+  height: 40px;
+  margin-right: 0.5rem;
+  border-radius: 50%; /* Makes the logo circular */
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: var(--accent-color); /* Deep Green */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.nav a:hover {
+  color: var(--hover-color); /* Light Green (#9AE6B4) */
+}
+
+.login-btn {
+  background-color: var(--accent-color); /* Deep Green */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.login-btn:hover {
+  background-color: var(--hover-color); /* Light Green */
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+  display: none; /* Hidden by default */
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Hide nav by default on mobile */
+    flex-direction: column;
+    background-color: var(--primary-bg);
+    position: absolute;
+    top: 100%; /* Position below the header */
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav.open {
+    display: flex; /* Show nav when open */
+  }
+
+  .hamburger-btn {
+    display: block; /* Show hamburger button on mobile */
+  }
+
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .login-btn {
+    display: none; /* Optionally hide login button on mobile */
+  }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Above everything else */
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  padding: 0.75rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.continue-btn {
+  background-color: var(--accent-color); /* Deep Green */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+  font-size: 1rem;
+}
+
+.continue-btn:hover {
+  background-color: var(--hover-color); /* Light Green */
+}
+
+.view-more-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.view-more-btn:hover {
+  text-decoration: underline;
+}
+
+.additional-options {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.google-btn,
+.facebook-btn,
+.apple-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Default text color */
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.google-btn img,
+.facebook-btn img,
+.apple-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+/* Google Button */
+.google-btn {
+  background-color: #F2F2F2; /* White background */
+  color: #000000; /* Black text */
+}
+
+
+/* Facebook Button */
+.facebook-btn {
+  background-color: #1877F2; /* Facebook blue */
+}
+
+/* Apple Button */
+.apple-btn {
+  background-color: #000000; /* Black background */
+  color: #FFFFFF; /* White text */
+}
+
+
+.or-text {
+  margin: 1rem 0;
+  color: var(--text-muted);
+}
+
+.create-account-link {
+  color: var(--accent-color); /* Deep Green */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.create-account-link:hover {
+  text-decoration: underline;
+}
+
+.icon {
+  width: 24px;  /* Increase width */
+  height: 24px; /* Increase height */
+  margin-right: 8px; /* Add spacing between icon and text */
+}

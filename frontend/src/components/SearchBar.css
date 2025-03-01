@@ -1,0 +1,58 @@
+/* src/components/SearchBar.css */
+.search-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.search-bar input {
+  padding: 0.75rem;
+  border: 1px solid var(--accent-color); /* Deep Green */
+  border-radius: 0.5rem 0 0 0.5rem;
+  width: 70%;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  background-color: var(--accent-color); /* Deep Green */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: var(--hover-color); /* Light Green */
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--accent-color);
+  border-radius: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.suggestion-item:hover {
+  background-color: var(--hover-color); /* Light Green */
+}
