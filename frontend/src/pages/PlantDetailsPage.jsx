@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header.jsx'; // Import Header
 import Footer from '../components/Footer.jsx'; // Import Footer
 import './PlantDetailsPage.css'; // Create this CSS file
+import ThreeDModel from '../components/3dModel.jsx';
+
 
 // Sample plant data
 const plants = [
@@ -312,10 +314,9 @@ const PlantDetailsPage = () => {
       {/* Main Content */}
       <div className="plant-details">
         {/* 3D Model Space */}
-        <div className="model-space">
-          <h2>3D Model Placeholder</h2>
-          <p>(3D model will be rendered here)</p>
-        </div>
+          {/* 3D Model Viewer */}
+          <ThreeDModel />
+
 
         {/* Language Toggle */}
         <button className="language-toggle" onClick={toggleLanguage}>

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import Header from '../components/Header'; // Import Header component
-import Footer from '../components/Footer'; // Import Footer component
-import TourCard from '../components/TourCard'; // Import TourCard component
-import RecipeDetails from '../components/RecipeDetails'; // Import RecipeDetails component
-import './GuidedToursPage.css'; // Import CSS for styling
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import TourCard from '../components/TourCard';
+import './GuidedToursPage.css';
 
 const GuidedToursPage = () => {
-  // Static data for guided tours
   const tours = [
     {
       id: 1,
@@ -117,40 +115,81 @@ const GuidedToursPage = () => {
     },
   ];
 
-  // State to track the selected tour
+
   const [selectedTour, setSelectedTour] = useState(null);
+  const [synth] = useState(window.speechSynthesis);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const speakRecipe = (recipe) => {
+    if (synth.speaking) synth.cancel();
+
+    const textInHindi = `${recipe.name} की सामग्री: ${recipe.ingredients.join(', ')}. विधि: ${recipe.steps.join('. ')}`;
+    const textInEnglish = `${recipe.name}. Ingredients: ${recipe.ingredients.join(', ')}. Steps: ${recipe.steps.join('. ')}`;
+
+    const hindiUtterance = new SpeechSynthesisUtterance(textInHindi);
+    hindiUtterance.lang = 'hi-IN';
+
+    const englishUtterance = new SpeechSynthesisUtterance(textInEnglish);
+    englishUtterance.lang = 'en-US';
+
+    hindiUtterance.onend = () => setIsPlaying(false);
+    englishUtterance.onend = () => setIsPlaying(false);
+
+    synth.speak(hindiUtterance);
+    synth.speak(englishUtterance);
+    setIsPlaying(true);
+  };
+
+  const togglePlayPause = () => {
+    if (synth.speaking) {
+      synth.pause();
+      setIsPlaying(false);
+    } else {
+      synth.resume();
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <>
-      {/* Header Component */}
       <Header />
-
-      {/* Main Content */}
       <main className="guided-tours-page">
         <h1>Guided Tours</h1>
 
-        {/* Display Tour Cards or Recipe Details */}
         {!selectedTour ? (
           <div className="tours-grid">
-            {/* Render Tour Cards */}
             {tours.map((tour) => (
-              <TourCard
-                key={tour.id}
-                tour={tour} // Pass the entire tour object
-                onSelect={() => setSelectedTour(tour)} // Set selected tour
-              />
+              <TourCard key={tour.id} tour={tour} onSelect={() => setSelectedTour(tour)} />
             ))}
           </div>
         ) : (
-          // Render Recipe Details for the Selected Tour
-          <RecipeDetails
-            tour={selectedTour} // Pass the selected tour
-            onBack={() => setSelectedTour(null)} // Reset selected tour
-          />
+          <div className="recipe-details">
+            <button onClick={() => setSelectedTour(null)}>⬅️ Back to Tours</button>
+            <h2>{selectedTour.title}</h2>
+            <p>{selectedTour.description}</p>
+
+            {selectedTour.recipes.map((recipe, index) => (
+              <div className="recipe-card" key={index}>
+                <h3>{recipe.name}</h3>
+                <p><em>Ingredients: {recipe.ingredients.join(', ')}</em></p>
+                <ul>
+                  {recipe.steps.map((step, i) => (
+                    <li key={i}>{step}</li>
+                  ))}
+                </ul>
+
+                <button onClick={() => speakRecipe(recipe)}>🗣️ Listen to Recipe</button>
+
+                {isPlaying && synth.speaking ? (
+                  <button onClick={togglePlayPause} title="Pause">⏸️</button>
+                ) : (
+                  <button onClick={togglePlayPause} title="Play">▶️</button>
+                )}
+              </div>
+            ))}
+          </div>
         )}
       </main>
-
-      {/* Footer Component */}
       <Footer />
     </>
   );
