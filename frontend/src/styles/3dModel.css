@@ -69,3 +69,67 @@ body {
     height: 300px;
   }
 }
+
+
+/* Container for the 3D model and popup */
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* 3D Scene */
+.threeDScene {
+  width: 70%; /* Adjust as needed */
+  height: 500px; /* Match the renderer height */
+}
+
+/* Right-Side Popup */
+.rightSidePopup {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25%; /* Adjust as needed */
+  background: rgba(255, 255, 255, 0);
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.popupContent {
+  text-align: center;
+}
+
+.popupContent h3 {
+  margin-top: 0;
+  color: white;
+}
+
+.popupContent img {
+  width: 100%;
+  height: auto;
+  border-radius: 250px;
+}
+
+.popupContent p {
+  color: white;
+  font-size: small;
+}
+
+.popupContent button {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popupContent button:hover {
+  background: #0056b3;
+}
