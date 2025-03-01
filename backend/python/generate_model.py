@@ -9,7 +9,7 @@ from mathutils import Vector
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Image path (update this with your image)
-image_filename = "images\\potato.png"
+image_filename = "images\\four.png"
 image_path = os.path.join(script_dir, image_filename)
 
 # Output paths
