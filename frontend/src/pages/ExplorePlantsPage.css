@@ -153,3 +153,25 @@
 .back-btn:hover {
   background-color: var(--hover-color); /* Light green */
 }
+
+
+.page-title {
+  font-size: 2.5rem; /* Large font size for desktop */
+  font-weight: bold;
+  color: var(--accent-color); /* Use your accent color (e.g., Deep Green) */
+  text-align: center; /* Center-align the text */
+  margin: 1rem 0; /* Add spacing above and below the title */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem; /* Smaller font size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.5rem; /* Even smaller font size for mobile devices */
+  }
+}

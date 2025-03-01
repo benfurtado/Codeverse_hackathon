@@ -1,29 +1,27 @@
 /* LeafLensAI.css */
 
-/* General Styles */
+/* General styles for the page */
 .leaf-lens-page {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
+}
+
+.leaf-lens-page h1 {
     text-align: center;
-}
-
-h1 {
-    font-size: 2.5rem;
     color: #2c3e50;
-    margin-bottom: 20px;
 }
 
-p {
-    font-size: 1.1rem;
+.leaf-lens-page p {
+    text-align: center;
     color: #34495e;
-    margin-bottom: 30px;
 }
 
-/* Upload Section */
+/* Upload section styles */
 .upload-section {
-    margin-bottom: 20px;
+    text-align: center;
+    margin: 20px 0;
 }
 
 .upload-btn {
@@ -31,46 +29,30 @@ p {
     padding: 10px 20px;
     background-color: #3498db;
     color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .upload-btn:hover {
     background-color: #2980b9;
 }
 
-.image-preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.image-preview-container img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Submit Button */
+/* Submit button styles */
 .submit-btn {
+    display: block;
+    margin: 20px auto;
     padding: 10px 20px;
     background-color: #27ae60;
     color: white;
-    font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
 }
 
 .submit-btn:disabled {
-    background-color: #bdc3c7;
+    background-color: #7f8c8d;
     cursor: not-allowed;
 }
 
@@ -78,57 +60,53 @@ p {
     background-color: #219653;
 }
 
-/* Result Section */
+/* Result section styles */
 .result-section {
     margin-top: 30px;
     padding: 20px;
     background-color: #ecf0f1;
-    border-radius: 10px;
-    text-align: left;
+    border-radius: 5px;
+    padding-bottom: 100px;
 }
 
 .result-section h2 {
-    font-size: 1.8rem;
     color: #2c3e50;
-    margin-bottom: 15px;
+    text-align: center;
 }
 
 .result-section h3 {
-    font-size: 1.5rem;
     color: #34495e;
     margin-top: 20px;
 }
 
 .result-section p {
-    font-size: 1rem;
     color: #34495e;
-    margin-bottom: 10px;
+    line-height: 1.6;
 }
 
-.result-section pre {
-    background-color: #2c3e50;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    overflow-x: auto;
-    font-size: 0.9rem;
-}
-
-.model-preview {
+/* Table styles for the result */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
-    padding: 15px;
-    background-color: #bdc3c7;
-    border-radius: 5px;
-    text-align: center;
 }
 
-.model-preview h3 {
-    font-size: 1.3rem;
+.result-table th,
+.result-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #bdc3c7;
+}
+
+.result-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+.result-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.result-table td {
     color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.model-preview p {
-    font-size: 1rem;
-    color: #34495e;
 }
