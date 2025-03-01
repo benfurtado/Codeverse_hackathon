@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Divider } from '@mui/material';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // Fix leaflet marker icons
 delete L.Icon.Default.prototype._getIconUrl;
@@ -31,6 +33,13 @@ const PlantMap = ({ plants, selectedPlantId, onPlantSelect }) => {
     }, [plants, selectedPlantId]);
   
     return (
+      <>
+      <button 
+          onClick={() => window.history.back()} 
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        >
+          Go Back
+      </button>
       <MapContainer
         center={[51.505, -0.09]}
         zoom={13}
@@ -74,6 +83,7 @@ const PlantMap = ({ plants, selectedPlantId, onPlantSelect }) => {
           </Marker>
         ))}
       </MapContainer>
+      </>
     );
   };
 

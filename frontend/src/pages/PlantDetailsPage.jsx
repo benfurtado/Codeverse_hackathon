@@ -17,7 +17,7 @@ const plants = [
     medicinalUse: 'Immunity',
     region: 'North India',
     type: 'Herb',
-    modelPath: '/images/curved.glb', // Add model path for each plant
+    modelPath: '/images/model/curved.glb', // Add model path for each plant
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const plants = [
     medicinalUse: 'Digestion',
     region: 'South India',
     type: 'Tree',
-    modelPath: '/images/curved.glb', // Add model path for each plant
+    modelPath: '/images/model/green-neem.glb', // Add model path for each plant
   },
   // Add more plants with their respective model paths...
 ];

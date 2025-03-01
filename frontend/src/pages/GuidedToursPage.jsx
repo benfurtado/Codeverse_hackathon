@@ -113,6 +113,113 @@ const GuidedToursPage = () => {
         },
       ],
     },
+    {
+      id: 5,
+      title: "Hair Care Solutions",
+      description: "Revitalize your hair with nourishing Ayurvedic treatments.",
+      image: "/images/hair-care.jpg", // Path to the image in the public folder
+      recipes: [
+        {
+          name: "Amla Hair Oil",
+          ingredients: ["Amla Powder", "Coconut Oil", "Curry Leaves"],
+          steps: [
+            "Heat 1 cup of coconut oil in a pan.",
+            "Add 2 tablespoons of amla powder and a handful of curry leaves.",
+            "Simmer on low heat for 15 minutes, then cool and strain.",
+            "Massage onto scalp and leave overnight before washing."
+          ],
+        },
+        {
+          name: "Hibiscus Hair Mask",
+          ingredients: ["Hibiscus Flowers", "Yogurt", "Fenugreek Seeds"],
+          steps: [
+            "Soak fenugreek seeds overnight and grind into a paste.",
+            "Blend hibiscus flowers with yogurt to form a smooth mixture.",
+            "Combine both pastes and apply evenly on hair.",
+            "Leave for 30 minutes and rinse thoroughly."
+          ],
+        },
+      ],
+    },
+    {
+      id: 6,
+      title: "Energy Boosters",
+      description: "Recharge your body with energizing Ayurvedic drinks.",
+      image: "/images/energy-boosters.jpg", // Path to the image in the public folder
+      recipes: [
+        {
+          name: "Shatavari Smoothie",
+          ingredients: ["Shatavari Powder", "Almond Milk", "Banana", "Dates"],
+          steps: [
+            "Blend 1 cup of almond milk with 1 teaspoon of shatavari powder.",
+            "Add a banana and 2-3 dates for sweetness.",
+            "Blend until smooth and serve chilled."
+          ],
+        },
+        {
+          name: "Chyawanprash Shake",
+          ingredients: ["Chyawanprash", "Milk", "Cardamom Powder"],
+          steps: [
+            "Mix 1 tablespoon of chyawanprash into 1 cup of warm milk.",
+            "Add a pinch of cardamom powder for flavor.",
+            "Stir well and drink daily for vitality."
+          ],
+        },
+      ],
+    },
+    {
+      id: 7,
+      title: "Sleep Enhancers",
+      description: "Improve sleep quality with calming Ayurvedic practices.",
+      image: "/images/sleep-enhancers.jpg", // Path to the image in the public folder
+      recipes: [
+        {
+          name: "Warm Golden Milk",
+          ingredients: ["Turmeric Powder", "Milk", "Cinnamon", "Nutmeg"],
+          steps: [
+            "Heat 1 cup of milk in a pan.",
+            "Add 1/2 teaspoon of turmeric powder, a dash of cinnamon, and a pinch of nutmeg.",
+            "Simmer for 5 minutes and drink warm before bedtime."
+          ],
+        },
+        {
+          name: "Jatamansi Tea",
+          ingredients: ["Jatamansi Powder", "Water", "Honey"],
+          steps: [
+            "Boil 2 cups of water in a pan.",
+            "Add 1 teaspoon of jatamansi powder and simmer for 5 minutes.",
+            "Strain and add honey for taste. Drink 30 minutes before sleeping."
+          ],
+        },
+      ],
+    },
+    {
+      id: 8,
+      title: "Joint & Muscle Relief",
+      description: "Soothe joint pain and muscle stiffness with Ayurvedic remedies.",
+      image: "/images/joint-relief.jpg", // Path to the image in the public folder
+      recipes: [
+        {
+          name: "Ginger Turmeric Paste",
+          ingredients: ["Fresh Ginger", "Turmeric Powder", "Coconut Oil"],
+          steps: [
+            "Grate fresh ginger and mix with 1 teaspoon of turmeric powder.",
+            "Add a few drops of coconut oil to form a paste.",
+            "Apply to affected areas and massage gently. Leave for 20 minutes before rinsing."
+          ],
+        },
+        {
+          name: "Castor Oil Pack",
+          ingredients: ["Castor Oil", "Warm Cloth", "Plastic Wrap"],
+          steps: [
+            "Soak a warm cloth in castor oil.",
+            "Place the cloth over the affected area and cover with plastic wrap.",
+            "Apply a heating pad or hot water bottle for 30 minutes.",
+            "Wipe off excess oil after use."
+          ],
+        },
+      ],
+    },
   ];
 
 

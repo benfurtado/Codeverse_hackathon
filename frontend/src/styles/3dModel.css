@@ -12,6 +12,7 @@
   height: 100%; /* Take full height of parent */
   position: relative;
   z-index: 1; /* Ensure it stays within its container */
+  padding-left: 25%;
 }
 
 /* Header for the 3D model */
@@ -19,6 +20,7 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
 
 
 /* Popup styling */
