@@ -37,7 +37,7 @@ const LeafLensAI = () => {
         });
 
         try {
-            const { data } = await axios.post("http://localhost:5001/identify", formData, {
+            const { data } = await axios.post("http://localhost:5000/api/identify", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             setResult(data);
