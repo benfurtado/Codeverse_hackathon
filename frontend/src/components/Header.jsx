@@ -30,11 +30,11 @@ const Header = () => {
       <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
         <a href="/">Home</a>
         <a href="/explore">Explore Plants</a>
+        <a href="/leaf-lens">LeafLens AI</a>
         <a href="/tours">Guided Tours</a>
+        <a href="/maps">Maps</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
-        <a href='/Maps'>Maps</a>
-        <a href='/leaf-lens'>LeafLens AI</a>
       </nav>
 
       {/* Login Button */}

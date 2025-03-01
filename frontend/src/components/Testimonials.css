@@ -40,24 +40,19 @@
   font-size: 2rem;
   color: var(--accent-color); /* Deep Green */
   margin-bottom: 0.5rem;
-  animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+}
+
+/* Testimonial Text */
+.testimonial-card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-color); /* Dark Gray (#1A202C) */
 }
 
 /* User Info */
 .user-info {
-  display: flex;
-  align-items: center; /* Vertically align items */
-  justify-content: center; /* Center items horizontally */
   margin-top: 1rem;
-  gap: 0.5rem; /* Space between icon and text */
-}
-
-/* User Icon */
-.user-icon {
-  font-size: 1.5rem;
-  color: var(--accent-color); /* Deep Green */
-  flex-shrink: 0; /* Prevent shrinking */
-  animation: bounce 2s infinite ease-in-out; /* Bounce animation */
+  text-align: center;
 }
 
 .user-info h3 {
@@ -71,22 +66,4 @@
   font-size: 0.8rem;
   color: var(--text-muted); /* Light Gray */
   margin: 0;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-.user-icon:hover {
-  transform: scale(1.1); /* Slightly enlarge the icon */
-  color: var(--hover-color); /* Change color on hover */
 }
