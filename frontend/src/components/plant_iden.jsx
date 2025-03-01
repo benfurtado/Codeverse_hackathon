@@ -5,10 +5,16 @@ function Identify() {
     const [files, setFiles] = useState([]);
     const [organs, setOrgans] = useState([]);
     const [result, setResult] = useState(null);
+    const [previewUrls, setPreviewUrls] = useState([]); // State for image preview URLs
 
     const handleFileChange = (e) => {
-        setFiles([...e.target.files]);
-        setOrgans(Array(e.target.files.length).fill("leaf")); // Default to "leaf"
+        const selectedFiles = [...e.target.files];
+        setFiles(selectedFiles);
+        setOrgans(Array(selectedFiles.length).fill("leaf")); // Default to "leaf"
+
+        // Generate preview URLs for the selected files
+        const urls = selectedFiles.map((file) => URL.createObjectURL(file));
+        setPreviewUrls(urls);
     };
 
     const handleSubmit = async () => {
@@ -32,7 +38,22 @@ function Identify() {
         <div>
             <h1>Plant Identification</h1>
             <input type="file" multiple onChange={handleFileChange} />
+
+            {/* Display image previews */}
+            <div style={{ display: "flex", flexWrap: "wrap", margin: "10px 0" }}>
+                {previewUrls.map((url, index) => (
+                    <img
+                        key={index}
+                        src={url}
+                        alt={`Preview ${index}`}
+                        style={{ width: "150px", height: "150px", margin: "5px", objectFit: "cover" }}
+                    />
+                ))}
+            </div>
+
             <button onClick={handleSubmit}>Identify</button>
+
+            {/* Display identification result */}
             {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
         </div>
     );
