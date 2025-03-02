@@ -1,7 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const plantController = require('../Controllers/plants');
+const plantsController = require('../Controllers/plants');
 
-router.get('/', plantController.getAllPlants);
+// Get all plants
+router.get('/', plantsController.getAllPlants);
+
+// Get a specific plant by ID
+router.get('/:id', plantsController.getPlantById);
+
+// Create a new plant
+router.post('/', plantsController.createPlant);
 
 module.exports = router;

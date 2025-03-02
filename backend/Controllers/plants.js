@@ -1,4 +1,4 @@
-const connection = require("../DB/connection"); // Using connection
+const connection = require('../DB/connection');
 
 // Get all plants
 exports.getAllPlants = async (req, res) => {
@@ -7,6 +7,27 @@ exports.getAllPlants = async (req, res) => {
     res.json(plants);
   } catch (error) {
     console.error('Error fetching plants:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// Get a specific plant by ID
+exports.getPlantById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [plant] = await connection.promise().query(
+      'SELECT * FROM plants WHERE id = ?',
+      [id]
+    );
+
+    if (plant.length === 0) {
+      return res.status(404).json({ message: 'Plant not found' });
+    }
+
+    res.json(plant[0]);
+  } catch (error) {
+    console.error('Error fetching plant by ID:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };

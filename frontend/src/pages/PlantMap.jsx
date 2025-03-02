@@ -13,43 +13,46 @@ L.Icon.Default.mergeOptions({
 });
 
 const PlantMap = ({ plants, selectedPlantId, onPlantSelect }) => {
-    const mapRef = useRef(null);
-  
-    useEffect(() => {
-      if (mapRef.current && plants?.length > 0) {
-        const bounds = L.latLngBounds(plants.map(plant => 
-          [plant.latitude, plant.longitude]
-        ));
-        
-        if (selectedPlantId) {
-          const selectedPlant = plants.find(p => p.id === selectedPlantId);
-          mapRef.current.flyTo([selectedPlant.latitude, selectedPlant.longitude], 15);
-        } else {
-          mapRef.current.flyToBounds(bounds, { padding: [50, 50] });
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    if (mapRef.current && plants?.length > 0) {
+      const allLocations = plants.flatMap(plant => plant.location);
+      const bounds = L.latLngBounds(allLocations);
+
+      if (selectedPlantId) {
+        const selectedPlant = plants.find(p => p.id === selectedPlantId);
+        if (selectedPlant?.location.length) {
+          const [latitude, longitude] = selectedPlant.location[0];
+          mapRef.current.flyTo([latitude, longitude], 15);
         }
+      } else {
+        mapRef.current.flyToBounds(bounds, { padding: [50, 50] });
       }
-    }, [plants, selectedPlantId]);
-  
-    return (
-      <MapContainer
-        center={[51.505, -0.09]}
-        zoom={13}
-        style={{ 
-          height: '80vh', 
-          width: '100%', 
-          borderRadius: '16px',
-          boxShadow: '0px 3px 5px rgba(0,0,0,0.2)'
-        }}
-        ref={mapRef}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {plants?.map(plant => (
+    }
+  }, [plants, selectedPlantId]);
+
+  return (
+    <MapContainer
+      center={[51.505, -0.09]}
+      zoom={13}
+      style={{ 
+        height: '80vh', 
+        width: '100%', 
+        borderRadius: '16px',
+        boxShadow: '0px 3px 5px rgba(0,0,0,0.2)'
+      }}
+      ref={mapRef}
+    >
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      />
+      {plants?.map(plant => (
+        plant.location.map(([latitude, longitude], index) => (
           <Marker
-            key={plant.id}
-            position={[Number(plant.latitude), Number(plant.longitude)]}
+            key={`${plant.id}-${index}`}
+            position={[Number(latitude), Number(longitude)]}
             eventHandlers={{
               click: () => {
                 onPlantSelect(plant.id);
@@ -72,9 +75,10 @@ const PlantMap = ({ plants, selectedPlantId, onPlantSelect }) => {
               </div>
             </Popup>
           </Marker>
-        ))}
-      </MapContainer>
-    );
-  };
+        ))
+      ))}
+    </MapContainer>
+  );
+};
 
 export default PlantMap;
