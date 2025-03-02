@@ -1,0 +1,112 @@
+/* LeafLensAI.css */
+
+/* General styles for the page */
+.leaf-lens-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.leaf-lens-page h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.leaf-lens-page p {
+    text-align: center;
+    color: #34495e;
+}
+
+/* Upload section styles */
+.upload-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.upload-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Submit button styles */
+.submit-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn:disabled {
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #219653;
+}
+
+/* Result section styles */
+.result-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    padding-bottom: 100px;
+}
+
+.result-section h2 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+.result-section h3 {
+    color: #34495e;
+    margin-top: 20px;
+}
+
+.result-section p {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+/* Table styles for the result */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.result-table th,
+.result-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #bdc3c7;
+}
+
+.result-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+.result-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.result-table td {
+    color: #2c3e50;
+}

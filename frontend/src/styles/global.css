@@ -2,14 +2,14 @@
 
 :root {
   /* Colors */
-  --primary-bg: #D1EEC7; /* Soft green for nav/footer */
-  --secondary-bg: #EDE9FE; /* Light purple for body */
-  --accent-color: #38A169; /* Deep green for CTAs */
-  --text-color: #1A202C; /* Dark gray for text */
-  --hover-color: #9AE6B4; /* Light green for hover effects */
-  --deep-green: #2E7D32; /* For headings and emphasis */
-  --muted-blue: #4FC3F7; /* For accents and highlights */
-  --error-color: #EF5350; /* For errors or warnings */
+  --primary-bg: #FAF3E0; /* Warm beige for body */
+  --secondary-bg: #F5F5F5; /* Off-white for cards/sections */
+  --accent-color: #4CAF50; /* Soft green for CTAs */
+  --text-color: #212121; /* Dark gray for text */
+  --hover-color: #81C784; /* Light mint green for hover */
+  --header-footer-bg: #D1EEC7; /* Light taupe for headers/footers */
+  --muted-text: #616161; /* Medium gray for muted text */
+  --error-color: #FF5252; /* Warm red for errors */
 
   /* Fonts */
   --font-heading: 'Merriweather', serif;
@@ -29,28 +29,43 @@
 
 body {
   font-family: var(--font-body);
-  background-color: var(--secondary-bg);
-  color: var(--text-color);
+  background-color: var(--primary-bg); /* Warm beige */
+  color: var(--text-color); /* Dark gray for readability */
   line-height: 1.6;
-  transition: background-color var(--transition-speed) var(--transition-easing); /* Smooth theme transitions */
+  transition: background-color var(--transition-speed) var(--transition-easing);
 }
 
 h1,
 h2,
 h3 {
   font-family: var(--font-heading);
-  color: var(--deep-green);
+  color: var(--text-color); /* Dark gray for headings */
   margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.75rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+h3 {
+  font-size: 1.75rem;
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
+  color: var(--muted-text); /* Medium gray for paragraphs */
 }
 
 a {
   color: var(--accent-color);
   text-decoration: none;
+  font-weight: 600; /* Add weight to links for better visibility */
   transition: color var(--transition-speed) var(--transition-easing);
 }
 
@@ -61,10 +76,12 @@ a:hover {
 button {
   background-color: var(--accent-color);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.6rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   transition: background-color var(--transition-speed) var(--transition-easing),
     transform var(--transition-speed) var(--transition-easing);
 }
@@ -72,6 +89,15 @@ button {
 button:hover {
   background-color: var(--hover-color);
   transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Header and Footer */
+.header,
+.footer {
+  background-color: var(--header-footer-bg); /* Light taupe */
+  color: var(--text-color);
+  padding: 1rem;
+  text-align: center;
 }
 
 /* Utility Classes */
@@ -86,7 +112,7 @@ button:hover {
 }
 
 .text-muted {
-  color: #666;
+  color: var(--muted-text);
 }
 
 /* Animations */
@@ -140,6 +166,6 @@ button:hover {
   }
 
   p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }

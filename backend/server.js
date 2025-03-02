@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 const upload = multer({ dest: "uploads/" });
 
 // Routes
-app.use("/api/users", userRoutes);
+app.use("/api", userRoutes);
 app.use("/api/plants", plant);
 
 // Plant Identification Route

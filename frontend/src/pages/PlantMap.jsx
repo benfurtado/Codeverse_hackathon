@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Divider } from '@mui/material';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // Fix leaflet marker icons
 delete L.Icon.Default.prototype._getIconUrl;
