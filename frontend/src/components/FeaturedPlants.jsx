@@ -19,11 +19,11 @@ const FeaturedPlants = () => {
     },
     {
       name: "Ashwagandha",
-      image: "/images/ashwagandha.jpg", // Placeholder path; update with your image
+      image: "/images/Ashwagandha.jpg", // Placeholder path; update with your image
     },
     {
       name: "Aloe Vera",
-      image: "/images/aloevera.jpg", // Placeholder path; update with your image
+      image: "/images/Aloevera.jpg", // Placeholder path; update with your image
     },
     {
       name: "Giloy",

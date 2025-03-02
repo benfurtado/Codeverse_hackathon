@@ -1,59 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import axios from 'axios';
-import ThreeDModel from '../components/ThreeDModel.jsx';
-import PlantMap from './PlantMap.jsx';
-import './PlantDetailsPage.css';
+import Header from '../components/Header.jsx'; // Import Header
+import Footer from '../components/Footer.jsx'; // Import Footer
+import ThreeDModel from '../components/3dModel.jsx'; // Import 3D Model Component
+import './PlantDetailsPage.css'; // Import CSS
+
+// Sample plant data
+const plants = [
+  {
+    id: 1,
+    name: 'Tulsi',
+    scientificName: 'Ocimum tenuiflorum',
+    description:
+      'Tulsi, also known as Holy Basil, is widely used in Ayurveda for its medicinal properties. It helps boost immunity and reduces stress.',
+    image: '/images/Tulsi.jpg',
+    medicinalUse: 'Immunity',
+    region: 'North India',
+    type: 'Herb',
+    modelPath: '/images/model/curved.glb', // Add model path for each plant
+  },
+  {
+    id: 2,
+    name: 'Neem',
+    scientificName: 'Azadirachta indica',
+    description:
+      'Neem is a versatile plant with antibacterial and antifungal properties. It is commonly used for skin and digestive health.',
+    image: '/images/neem.jpg',
+    medicinalUse: 'Digestion',
+    region: 'South India',
+    type: 'Tree',
+    modelPath: '/images/model/green-neem.glb', // Add model path for each plant
+  },
+  // Add more plants with their respective model paths...
+];
 
 const PlantDetailsPage = () => {
-  const { id } = useParams();
-  const [plant, setPlant] = useState(null);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [language, setLanguage] = useState('en');
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [voices, setVoices] = useState([]);
-  const [showMapModal, setShowMapModal] = useState(false);
-  let utterance = null;
+  const { id } = useParams(); // Get the plant ID from the URL
+  const plant = plants.find((p) => p.id === parseInt(id));
+  const [isSpeaking, setIsSpeaking] = useState(false); // State to track speech status
+  const [language, setLanguage] = useState('en'); // State for language toggle
+  const [isFavorite, setIsFavorite] = useState(false); // State for favorite toggle
+  const [voices, setVoices] = useState([]); // State to store available voices
 
   useEffect(() => {
-    const fetchPlantDetails = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/plants/${id}`);
-        setPlant(response.data);
-      } catch (error) {
-        console.error('Error fetching plant details:', error);
-      }
-    };
-
-    fetchPlantDetails();
-  }, [id]);
-
-  useEffect(() => {
+    // Load available voices
     const loadVoices = () => {
       const voiceList = window.speechSynthesis.getVoices();
       setVoices(voiceList);
     };
 
+    // Some browsers require the voiceschanged event to populate voices
     window.speechSynthesis.onvoiceschanged = loadVoices;
     loadVoices();
   }, []);
 
   if (!plant) {
-    return <p>Loading plant details...</p>;
+    return <p>Plant not found.</p>;
   }
 
+  // Text-to-Speech functionality
   const handleTextToSpeech = () => {
-    if (utterance) {
-      window.speechSynthesis.cancel();
-    }
-    utterance = new SpeechSynthesisUtterance(
-      `${plant.name} (${plant.scientific_name}). ${plant.description}. Plant Type: ${plant.plant_type}. Peak Season: ${plant.peak_season}. Growth Method: ${plant.growth_method}. Suitable Climate: ${plant.temp_location_suitability}. Region: ${plant.region || 'N/A'}. Medicinal Use: ${plant.medicinal_use}. Nutrients and Benefits: ${plant.nutrients_and_benefits}.`
+    const utterance = new SpeechSynthesisUtterance(
+      language === 'en'
+        ? plant.description
+        : 'एलोवेरा एक मांसल पौधा है, जो अपने चिकित्सीय गुणों के लिए जाना जाता है। इसका जेल जलन, घावों और त्वचा की सूजन के उपचार के लिए उपयोग किया जाता है। यह एंटीऑक्सिडेंट और एंटीमाइक्रोबियल लाभ प्रदान करता है।'
     );
+
+    // Set the language for the utterance
     utterance.lang = language === 'en' ? 'en-US' : 'hi-IN';
 
+    // Select a Hindi voice if available
     if (language === 'hi') {
       const hindiVoice = voices.find((voice) => voice.lang === 'hi-IN');
       if (hindiVoice) {
@@ -65,30 +81,18 @@ const PlantDetailsPage = () => {
     }
 
     setIsSpeaking(true);
-    setIsPaused(false);
     speechSynthesis.speak(utterance);
 
+    // Reset speaking state when speech ends
     utterance.onend = () => setIsSpeaking(false);
   };
 
-  const pauseSpeech = () => {
-    if (speechSynthesis.speaking && !speechSynthesis.paused) {
-      speechSynthesis.pause();
-      setIsPaused(true);
-    }
-  };
-
-  const resumeSpeech = () => {
-    if (speechSynthesis.paused) {
-      speechSynthesis.resume();
-      setIsPaused(false);
-    }
-  };
-
+  // Language toggle functionality
   const toggleLanguage = () => {
     setLanguage((prevLanguage) => (prevLanguage === 'en' ? 'hi' : 'en'));
   };
 
+  // Share functionality
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -101,59 +105,66 @@ const PlantDetailsPage = () => {
     }
   };
 
+  // Favorite functionality
   const toggleFavorite = () => {
     setIsFavorite((prevFavorite) => !prevFavorite);
   };
 
-  // Instead of opening a new tab, show the map modal
-  const openMap = () => {
-    setShowMapModal(true);
-  };
-
   return (
     <>
+      {/* Header */}
       <Header />
-      <div className="plant-details-container">
-        <ThreeDModel modelPath={plant.modelPath} />
-        <div className="plant-info">
-          <h1>{plant.name} ({plant.scientific_name})</h1>
-          <p><strong>Description:</strong> {plant.description}</p>
-          <p><strong>Plant Type:</strong> {plant.plant_type}</p>
-          <p><strong>Peak Season:</strong> {plant.peak_season}</p>
-          <p><strong>Growth Method:</strong> {plant.growth_method}</p>
-          <p><strong>Suitable Climate:</strong> {plant.temp_location_suitability}</p>
-          <p><strong>Region:</strong> {plant.region || 'N/A'}</p>
-          <p><strong>Medicinal Use:</strong> {plant.medicinal_use}</p>
-          <p><strong>Nutrients and Benefits:</strong> {plant.nutrients_and_benefits}</p>
+      <ThreeDModel modelPath={plant.modelPath} />
 
-          <div className="audio-controls">
-            <button className="audio-btn" onClick={handleTextToSpeech} disabled={isSpeaking && !isPaused}>
-              {isSpeaking && !isPaused ? '🔊 Speaking...' : '🔈 Listen'}
-            </button>
-            <button className="audio-btn" onClick={pauseSpeech} disabled={!isSpeaking || isPaused}>⏸️ Pause</button>
-            <button className="audio-btn" onClick={resumeSpeech} disabled={!isPaused}>▶️ Play</button>
-          </div>
+      {/* Main Content */}
+      <div className="plant-details">
 
-          <div className="action-buttons">
-            <button className="share-btn" onClick={handleShare}>📤 Share</button>
-            <button className="favorite-btn" onClick={toggleFavorite}>
-              {isFavorite ? '❤️ Remove from Favorites' : '🤍 Add to Favorites'}
-            </button>
-            <button className="map-btn" onClick={openMap}>🗺️ View on Map</button>
-          </div>
+
+        {/* Language Toggle */}
+        <button className="language-toggle" onClick={toggleLanguage}>
+          {language === 'en' ? 'Switch to Hindi' : 'अंग्रेजी में स्विच करें'}
+        </button>
+
+        {/* Plant Name */}
+        <h1 className="plant-name">
+          {language === 'en' ? plant.name : plant.name === 'Aloe Vera' ? 'एलोवेरा' : 'तुलसी'}
+        </h1>
+
+        {/* Scientific Name */}
+        <h2 className="scientific-name">
+          {language === 'en'
+            ? plant.scientificName
+            : plant.scientificName === 'Aloe barbadensis'
+            ? 'एलोए बारबडेंसिस'
+            : 'ओसिमम टेनुइफ्लोरम'}
+        </h2>
+
+        {/* Description and Audio Button */}
+        <div className="description-container">
+          <p className="description">
+            {language === 'en'
+              ? plant.description
+              : plant.name === 'Aloe Vera'
+              ? 'एलोवेरा एक मांसल पौधा है, जो अपने चिकित्सीय गुणों के लिए जाना जाता है। इसका जेल जलन, घावों और त्वचा की सूजन के उपचार के लिए उपयोग किया जाता है। यह एंटीऑक्सिडेंट और एंटीमाइक्रोबियल लाभ प्रदान करता है।'
+              : 'तुलसी, जिसे पवित्र तुलसी के रूप में भी जाना जाता है, आयुर्वेद में अपने औषधीय गुणों के लिए व्यापक रूप से उपयोग किया जाता है।'}
+          </p>
+          <button className="audio-btn" onClick={handleTextToSpeech}>
+            {isSpeaking ? '🔊 Speaking...' : '🔈 Listen'}
+          </button>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="action-buttons">
+          <button className="share-btn" onClick={handleShare}>
+            📤 Share
+          </button>
+          <button className="favorite-btn" onClick={toggleFavorite}>
+            {isFavorite ? '❤️ Remove from Favorites' : '🤍 Add to Favorites'}
+          </button>
         </div>
       </div>
 
-      {/* Map Modal */}
-      {showMapModal && (
-        <div className="map-modal">
-          <div className="map-modal-content">
-            <button className="close-modal-btn" onClick={() => setShowMapModal(false)}>✖</button>
-            <PlantMap plants={[plant]} selectedPlantId={plant.id} onPlantSelect={() => {}} />
-          </div>
-        </div>
-      )}
-
+      {/* Footer */}
       <Footer />
     </>
   );

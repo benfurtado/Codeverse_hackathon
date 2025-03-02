@@ -4,6 +4,7 @@
   width: 100%; /* Take full width of parent */
   height: 100%; /* Take full height of parent */
   min-height: 400px; /* Minimum height to ensure it's visible */
+  border-radius: 30px;
 }
 
 /* Scene container */
@@ -13,6 +14,8 @@
   position: relative;
   z-index: 1; /* Ensure it stays within its container */
   padding-left: 25%;
+  border-radius: 30px;
+
 }
 
 /* Header for the 3D model */

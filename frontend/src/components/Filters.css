@@ -1,13 +1,13 @@
 .filters {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    justify-content: center;
-  }
-  
-  .filters select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    background-color: var(--secondary-bg);
-  }
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.filters select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: var(--secondary-bg);
+}
