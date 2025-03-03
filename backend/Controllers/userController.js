@@ -1,13 +1,27 @@
 const connection = require("../DB/connection");
 
-exports.getUsers = (req, res) => {
-  connection.query("SELECT * FROM users", (error, results) => {
-    if (error) {
-      return res.status(500).json({ error: error.message });
+exports.loginUser = (req, res) => {
+  const { username, password } = req.body;
+
+
+  // Use parameterized query to prevent SQL injection.
+  connection.query(
+    'SELECT * FROM users WHERE username = ? AND password = ?',
+    [username, password],
+    (error, results) => {
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+      if (results.length === 0) {
+        // No matching user found.
+        return res.status(401).json({ error: 'Invalid credentials.' });
+      }
+      // Login successful, send back the user details.
+      res.json({ user: results[0] });
     }
-    res.json(results);
-  });
+  );
 };
+
 
 exports.createUser = (req, res) => {
   const { email, username, password } = req.body;

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Header.css';
-
+import oak from '../assets/Oak_tree.jpg';
 const Header = () => {
   // UI state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showMoreOptions, setShowMoreOptions] = useState(false);
-  const [isSignup, setIsSignup] = useState(false); // Toggle between login and signup
+  const [isSignup, setIsSignup] = useState(false);
 
   // User state
   const [user, setUser] = useState(null);
@@ -20,32 +20,33 @@ const Header = () => {
   const [signupUsername, setSignupUsername] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
 
-  // On component mount, attempt to fetch user details if already logged in.
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/login')
-      .then(response => {
-        if (response.data && response.data.loggedIn) {
-          setUser(response.data.user);
-        }
-      })
-      .catch(error => {
-        console.error("Error fetching user details:", error);
-      });
-  }, []);
+  // Optional: Remove GET call if not supported by backend.
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/api/login')
+  //     .then(response => {
+  //       if (response.data && response.data.loggedIn) {
+  //         setUser(response.data.user);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error("Error fetching user details:", error);
+  //     });
+  // }, []);
 
-  // Closes the modal if clicked outside the modal content.
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       setIsModalOpen(false);
     }
   };
 
-  // Handles login functionality
+  // Login handler
   const handleLogin = (e) => {
     e.preventDefault();
     axios.post('http://localhost:5000/api/login', {
       username: loginUsername,
       password: loginPassword,
+    }, {
+      headers: { 'Content-Type': 'application/json' }
     })
       .then(response => {
         setUser(response.data.user);
@@ -58,15 +59,16 @@ const Header = () => {
       });
   };
 
-  // Handles signup functionality
+  // Signup handler
   const handleSignup = (e) => {
     e.preventDefault();
     axios.post('http://localhost:5000/api/user', {
       username: signupUsername,
       password: signupPassword,
+    }, {
+      headers: { 'Content-Type': 'application/json' }
     })
       .then(response => {
-        // Assuming the signup auto logs in the user or returns the created user.
         setUser(response.data.user);
         setIsModalOpen(false);
         setSignupUsername('');
@@ -77,7 +79,6 @@ const Header = () => {
       });
   };
 
-  // Navigation links change based on login status
   const navLinks = user ? [
     { path: "/", label: "Home" },
     { path: "/explore", label: "Explore Plants" },
@@ -98,43 +99,58 @@ const Header = () => {
 
   return (
     <header className="header">
-      {/* Logo */}
       <div className="logo">
         <img src="/images/logoayurastra.png" alt="AyurAstra Logo" className="logo-image" />
         AyurAstra
       </div>
 
-      {/* Hamburger Menu Icon (Visible on Mobile) */}
       <button className="hamburger-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         ☰
       </button>
 
-      {/* Navigation Menu */}
       <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
         {navLinks.map((link, index) => (
           <a key={index} href={link.path}>{link.label}</a>
         ))}
       </nav>
 
-      {/* Right-hand UI: Either Profile Picture or Login/Signup Button */}
       {user ? (
-        <div className="profile-container">
-          {/* Animated profile picture */}
-          <img src="/images/animated-profile.gif" alt="Profile" className="profile-pic" />
-        </div>
+        <div 
+        className="profile-container" 
+        style={{ 
+          width: '50px', // Adjust the size as needed
+          height: '50px', // Adjust the size as needed
+          borderRadius: '50%', // Makes it circular
+          overflow: 'hidden', // Ensures the image stays within the circular boundary
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          border: '1px solid #ccc' // Optional: Adds a border
+        }}
+      >
+        <img 
+          src={oak} 
+          alt="Profile" 
+          className="profile-pic" 
+          style={{ 
+            width: '100%', // Ensures the image fills the container
+            height: '100%', // Ensures the image fills the container
+            objectFit: 'cover' // Ensures the image covers the circular area without distortion
+          }} 
+        />
+      </div>
       ) : (
         <button
           className="login-btn"
           onClick={() => {
             setIsModalOpen(true);
-            setIsSignup(false); // Default to login mode when opening modal
+            setIsSignup(false);
           }}
         >
           Login / Signup
         </button>
       )}
 
-      {/* Modal for Login/Signup */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={handleOverlayClick}>
           <div className="modal-content">
@@ -182,7 +198,6 @@ const Header = () => {
               </form>
             )}
 
-            {/* Additional login options only shown on login mode */}
             {!isSignup && (
               <>
                 <button
@@ -210,7 +225,6 @@ const Header = () => {
               </>
             )}
 
-            {/* Toggle between Login and Signup */}
             <p className="or-text">Or</p>
             {isSignup ? (
               <p>
